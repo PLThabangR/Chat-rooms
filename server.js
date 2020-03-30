@@ -15,10 +15,20 @@ app.use(express.static(path.join(__dirname,'public')));
 
 //Run when a client connect
 io.on('connection',socket =>{
-    console.log("New ws connection...");
 
-    socket.emit('message','Welcome to chat app')
-} )
+//Welcome current user
+socket.emit('message','Welcome to chat app');
+
+//Broadcast will emit to everybody when a user connects
+socket.broadcast.emit('message','A user has joined the chat');
+
+//Brodcast will run when user disconnects
+socket.on('disconnect',()=>{
+io.emit('message','A user has left the chat');
+})
+
+
+} );
 
 //This select the port for the app to listen 
 const PORT = 3000 || process.env.PORT;
