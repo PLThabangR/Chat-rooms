@@ -14,7 +14,7 @@ const io = socketio(server);
 app.use(express.static(path.join(__dirname,'public')));
 
 //Run when a client connect
-io.on('connection',socket =>{
+io.on('connection', socket => {
 
 //Welcome current user
 socket.emit('message','Welcome to chat app');
