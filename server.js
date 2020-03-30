@@ -15,7 +15,9 @@ app.use(express.static(path.join(__dirname,'public')));
 
 //Run when a client connect
 io.on('connection',socket =>{
-    console.log("New ws connection...")
+    console.log("New ws connection...");
+
+    socket.emit('message','Welcome to chat app')
 } )
 
 //This select the port for the app to listen 
